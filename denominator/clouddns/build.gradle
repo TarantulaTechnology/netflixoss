@@ -1,0 +1,31 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply from: rootProject.file('dagger.gradle')
+
+sourceCompatibility = JavaVersion.VERSION_1_6
+targetCompatibility = JavaVersion.VERSION_1_6
+
+eclipse {
+  classpath {
+    downloadSources = true
+    downloadJavadoc = true
+  }
+}
+
+test {
+  useTestNG()
+  systemProperty 'clouddns.url', System.getProperty('clouddns.url', '')
+  systemProperty 'clouddns.username', System.getProperty('clouddns.username', '')
+  systemProperty 'clouddns.password', System.getProperty('clouddns.password', '')
+  systemProperty 'clouddns.zone', System.getProperty('clouddns.zone', '')
+}
+
+dependencies {
+  compile      project(':denominator-core')
+  compile     'com.netflix.feign:feign-core:4.3.0'
+  compile     'com.netflix.feign:feign-gson:4.3.0'
+  testCompile  project(':denominator-core').sourceSets.test.output
+  testCompile 'com.google.guava:guava:14.0.1'
+  testCompile 'org.testng:testng:6.8.5'
+  testCompile 'com.google.mockwebserver:mockwebserver:20130706'
+}

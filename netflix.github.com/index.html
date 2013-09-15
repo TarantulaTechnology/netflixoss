@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="shortcut icon" href="http://cdn-0.nflximg.com/en_US/icons/nficon.ico">
+    <meta name="description" content="Netflix Open Source">
+    <meta name="title" content="Netflix Open Source">
+    <title>Netflix Open Source</title>
+  
+    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.dateFormat-1.0.js"></script>
+    <script type="text/javascript" src="http://d3js.org/d3.v2.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css?v=201303081202">
+    <link rel="stylesheet" type="text/css" href="css/commits.css?v=201303081202">
+	<!--[if IE]>
+	<style>
+		.repo-item-cover, .repo-item-shadow, .repo-item-button
+		{
+		    width: 186px;
+			height: 256px;
+		}
+	</style>
+	<![endif]-->
+
+    <script type="text/javascript">
+        var reposTab = [];
+        var membersTab = [];
+
+        function repos(json)
+        {
+            if ( json.repos && $.isArray(json.repos) )
+            {
+				reposTab = json.repos;
+			}
+			if ( json.members && $.isArray(json.members) )
+			{
+				membersTab = json.members;
+			}
+        }
+    </script>
+    <script type="text/javascript" src="http://githubproxy-942908148.us-east-1.elb.amazonaws.com/REST/v2/consolidated?jsonp=repos"></script>
+    <script type="text/javascript" src="js/models.js?v=201303071100"></script>
+    <script type="text/javascript" src="js/nf.js?v=201303071100"></script>
+</head>
+
+<body>
+
+<div id="non-scrolling-section">
+	<div class="header">
+	    <div class="header-logo">
+	        <a href="http://www.netflix.com"><img src="assets/Netflix_OSS_Logo.jpg" width="224" height="40" align="middle" alt="Netflix" border="0"></a>
+	        <div class="header-text">Netflix Open Source Center</div>
+	    </div>
+	</div>
+
+	<div id="sub-header">
+	</div>
+</div>
+
+<div id="scrolling-section">
+
+<div id="tab-content-repo">
+	<div id="repo-hero"><a href="https://github.com/Netflix/Cloud-Prize/blob/master/README.rdoc"><img src="assets/950x250_BNR_CloudPrize_Attend_v3.jpg" width="950" height="250" alt="Netflix OSS Prize" border="0"></a></div>
+	<div id="repo-heading">
+	    <span><a href="https://github.com/Netflix">Our Repositories</a></span>
+		<a href="#" onclick="repoView(true);"><img src="assets/glyphicons_156_show_thumbnails.png" width="22" height="22" alt="Thumbnails" border="0"></a>
+		<a href="#" onclick="repoView(false);"><img src="assets/glyphicons_114_list.png" width="22" height="22" alt="List" border="0"></a>
+	    <span id="repstats"></span>
+	</div>
+	<div id="repo-content"></div><br clear="all">
+	<div id="repo-list-content"></div>
+</div>
+
+<div id="tab-content-timeline">
+    <div class="section-heading">Netflix OSS GitHub Repositories</div>
+    <div id="commits" style="padding: 380px 40px; margin-right: 50px;"></div>
+    <div class="help">Scroll to expand or compress the timelines, drag to shift the timelines earlier or later, and mouse over a timeline to see the committers's names and commit messages.</div>
+    <script type="text/javascript" src="http://javaposseroundup.github.com/d3github/commitsbase.js"></script>
+    <script type="text/javascript" src="js/commits.js?v=201303071100"></script>
+</div>
+
+<div id="tab-content-lists">
+	<div id="lists-content">
+		<div id="lists-content-heading">
+			Mailing Lists
+		</div>
+	
+		<div class="lists-content-item">
+			<p>
+			We maintain mailing lists for some of our open source projects. Click on the following
+			links to subscribe and/or maintain your subscriptions.
+			</p>
+		
+			<p id="lists-repos"></p>
+		</div>
+	</div>
+</div>
+
+<div id="tab-content-community">
+    <div class="section-heading">Netflix OSS is popular! Here are some outside projects that utilize Netflix OSS:</div>
+
+	<div id="community-table-content" class="display-table-content">		
+	</div>
+</div>
+
+<div id="tab-content-powered-by">
+	<div class="content-padding-light">
+	    <div class="section-heading">These companies are using Netflix OSS Components</div>
+		<div id="content-powered-by">
+		</div>
+	</div>
+</div>
+
+<div id="tab-content-web">
+    <div class="section-heading">Articles and blogs about Netflix OSS</div>
+
+	<div id="web-table-content" class="display-table-content">
+	</div>
+</div>
+
+<div id="tab-content-amis">
+    <div class="section-heading">Pre-built AMIs for Netflix OSS Components</div>
+
+	<div id="amis-table-content" class="display-table-content">
+		<table id="web-table" class="display-table">
+			<tr class="display-table-item-row">
+				<td class="display-table-item-row-cell-0">
+					<p style="font-size: 125%; font-weight: bold">
+					Asgard AMI<br>
+					<a href="https://console.aws.amazon.com/ec2/home?region=us-east-1#launchAmi=ami-1889f771">https://console.aws.amazon.com/ec2/home?region=us-east-1#launchAmi=ami-1889f771</a>
+					</p>
+					
+					<p>
+					<strong>Components and relevant licences:</strong><br>
+
+					<ul>
+					<li>Ubuntu - <a href="http://www.ubuntu.com/about/about-ubuntu/licensing">http://www.ubuntu.com/about/about-ubuntu/licensing</a></li>
+					<li>Java - <a href="http://www.oracle.com/technetwork/java/javase/terms/license/index.html">http://www.oracle.com/technetwork/java/javase/terms/license/index.html</a></li>
+					<li>Tomcat - <a href="http://tomcat.apache.org/legal.html">http://tomcat.apache.org/legal.html</a></li>
+					<li>Grails - <a href="http://grails.org/License">http://grails.org/License</a></li>
+					<li>Groovy - <a href="http://groovy.codehaus.org/License+Information">http://groovy.codehaus.org/License+Information</a></li>
+					<li>The licenses for all the Javascript used in Asgard is available at: <a href="https://github.com/Netflix/asgard/blob/master/NOTICE.txt">https://github.com/Netflix/asgard/blob/master/NOTICE.txt</a></li> 					
+					</ul>
+					</p>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<div id="info-box">
+    <div id="info-box-content">
+        <div class="info-box-content-item-header">
+            A Netflix Original Production
+        </div>
+
+        <div class="info-box-content-item-header">
+            Open Source
+        </div>
+
+        <div class="info-box-content-item-header">
+            Communication
+        </div>
+
+        <div class="info-box-content-item-clear"></div>
+
+        <div>
+            <div class="info-box-content-item">
+                <div class="info-box-content-item-line">&copy; 2012-<span id="year"></span> Netflix, Inc. All rights reserved.</div>
+            </div>
+
+            <div class="info-box-content-item">
+                <div class="info-box-content-item-line"><a href="http://netflix.github.com/">Netflix Open Source</a></div>
+                <div class="info-box-content-item-line"><a href="https://github.com/Netflix/">Netflix GitHub</a></div>
+                <div class="info-box-content-item-line">Get in on the fun: <a href="http://www.netflix.com/jobs">Join Us!</a></div>
+            </div>
+
+            <div class="info-box-content-item">
+                <div class="info-box-content-item-line"><a href="http://techblog.netflix.com">Our Tech Blog</a></div>
+                <div class="info-box-content-item-line"><a href="http://twitter.com/NetflixOSS">@NetflixOSS</a></div>
+                <div class="info-box-content-item-line"><a href="http://www.slideshare.net/netflix">Slideshare</a></div>
+                <div class="info-box-content-item-line"><a href="http://www.meetup.com/Netflix-Open-Source-Platform/">Netflix Meetup</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<div id="balloon-container">
+	<div class="balloon-frame">
+		<div id="balloon-heading"></div>
+	
+		<div id="balloon-content">
+			<div id="balloon-description"></div>
+			<div class="baloon-field">
+				<!-- GitHub JSON data only reports counts of Stars, not Watchers, although the JSON data mislabels the numbers as "watchers" -->
+				<span class="balloon-label">Stars: </span>
+				<span id="balloon-watchers"></span>
+			</div>
+			<div class="baloon-field">
+				<span class="balloon-label">Forks: </span>
+				<span id="balloon-forks"></span>
+			</div>
+			<div class="baloon-field">
+				<span class="balloon-label">Language: </span>
+				<span id="balloon-language"></span>
+			</div>
+			<div class="baloon-field">
+				<span class="balloon-label">Open Issues: </span>
+				<span id="balloon-issues"></span>
+			</div>
+			<div class="baloon-field">
+				<span class="balloon-label">Updated: </span>
+				<span id="balloon-updated"></span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="balloon-arrow-left"><img src="assets/left-arrow.png" width="47" height="56" border="0" alt=""></div>
+<div id="balloon-arrow-right"><img src="assets/right-arrow.png" width="47" height="55" border="0" alt=""></div>
+
+</body>
+</html>

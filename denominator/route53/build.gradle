@@ -1,0 +1,31 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply from: rootProject.file('dagger.gradle')
+
+sourceCompatibility = JavaVersion.VERSION_1_6
+targetCompatibility = JavaVersion.VERSION_1_6
+
+eclipse {
+  classpath {
+    downloadSources = true
+    downloadJavadoc = true
+  }
+}
+
+test {
+  useTestNG()
+  systemProperty 'route53.url', System.getProperty('route53.url', '')
+  systemProperty 'route53.accesskey', System.getProperty('route53.accesskey', '')
+  systemProperty 'route53.secretkey', System.getProperty('route53.secretkey', '')
+  systemProperty 'route53.zone', System.getProperty('route53.zone', '')
+}
+
+dependencies {
+  compile      project(':denominator-core')
+  compile     'com.netflix.feign:feign-core:4.3.0'
+  testCompile  project(':denominator-core').sourceSets.test.output
+  testCompile 'com.google.guava:guava:14.0.1'
+  testCompile 'org.testng:testng:6.8.5'
+  testCompile 'com.google.code.gson:gson:2.2.4'
+  testCompile 'com.google.mockwebserver:mockwebserver:20130706'
+}

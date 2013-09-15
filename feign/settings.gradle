@@ -1,0 +1,6 @@
+rootProject.name='feign'
+include 'core', 'gson', 'jaxrs', 'ribbon', 'example-github', 'example-wikipedia'
+
+rootProject.children.each { childProject ->
+    childProject.name = 'feign-' + childProject.name
+}

@@ -1,0 +1,31 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply from: rootProject.file('dagger.gradle')
+
+sourceCompatibility = JavaVersion.VERSION_1_6
+targetCompatibility = JavaVersion.VERSION_1_6
+
+eclipse {
+  classpath {
+    downloadSources = true
+    downloadJavadoc = true
+  }
+}
+
+jar {
+  manifest {
+    attributes("Implementation-Title": "Denominator", "Specification-Version": version, "Implementation-Version": version)
+  }
+}
+
+test {
+  useTestNG()
+}
+
+dependencies {
+  compile      project(':denominator-model')
+  testCompile 'com.google.guava:guava:14.0.1'
+  testCompile 'org.testng:testng:6.8.5'
+  testCompile 'com.google.code.gson:gson:2.2.4'
+  testCompile 'com.google.mockwebserver:mockwebserver:20130706'
+}

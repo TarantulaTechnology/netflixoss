@@ -1,0 +1,33 @@
+subprojects {
+// Checkstyle
+apply plugin: 'checkstyle'
+checkstyle {
+    ignoreFailures = true 
+    configFile = rootProject.file('codequality/checkstyle.xml')
+}
+checkstyleTest {
+    configFile = rootProject.file('codequality/checkstyle_test.xml')
+}
+
+// FindBugs
+apply plugin: 'findbugs'
+findbugs {
+    ignoreFailures = false 
+}
+[findbugsMain, findbugsTest]*.reports {
+    xml.enabled false
+    html.enabled true
+}
+
+// PMD
+apply plugin: 'pmd'
+//tasks.withType(Pmd) { reports.html.enabled true }
+
+apply plugin: 'cobertura'
+cobertura {
+    sourceDirs = sourceSets.main.java.srcDirs
+    format = 'html'
+    includes = ['**/*.java', '**/*.groovy']
+    excludes = []
+}
+}

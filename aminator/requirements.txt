@@ -1,0 +1,10 @@
+boto>=2.7
+bunch
+decorator
+distribute
+envoy
+logutils
+pyyaml
+requests
+stevedore
+simplejson
